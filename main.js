@@ -16,7 +16,7 @@
   const EN = {
     'nav.about': 'The house', 'nav.spaces': 'Spaces', 'nav.gallery': 'Gallery', 'nav.location': 'Mochlos', 'nav.reviews': 'Reviews',
     'cta.book': 'Book', 'cta.bookNow': 'Book your stay', 'cta.checkAvail': 'Check availability', 'cta.photos': 'Photos',
-    'hero.eyebrow': 'Mochlos · Lasithi · Crete', 'hero.sub': 'A hillside home where the wind meets the sea of Mochlos.', 'hero.scroll': 'Scroll',
+    'hero.eyebrow': 'Mochlos · Lasithi · Crete', 'hero.sub': 'A hillside home where the wind meets the sea of Mochlos.', 'hero.scroll': 'Scroll', 'hero.h1extra': '— holiday home in Mochlos, Crete',
     'about.eyebrow': 'The house', 'about.title': 'Live Mochlos <em>from above</em>',
     'about.p1': 'Cassa Ventossa sits on the hillside above the fishing village of Mochlos, with the sea spread out before you and the islet mirrored in the bay.',
     'about.p2': 'A warm, bright home with wooden ceilings, a stone fireplace and a covered veranda overlooking the sea. A fully equipped kitchen, two bedrooms and everything you need to unwind at your own pace — minutes from the village tavernas and the water.',
@@ -49,14 +49,40 @@
   $$('[data-i18n-html]').forEach((el) => (EL[el.dataset.i18nHtml] = el.innerHTML));
   EL.nights = (n) => `${n} ${n === 1 ? 'βράδυ' : 'βράδια'}`;
 
-  let lang = 'el';
+  // Language: ?lang=en in the URL wins, then the visitor's saved choice, then the browser.
+  // Search-engine crawlers always get Greek on "/" and English on "/?lang=en" (see hreflang).
+  const SITE = 'https://www.casa-ventossa.gr/';
+  const META = {
+    el: {
+      title: document.title,
+      desc: $('meta[name=description]').content,
+    },
+    en: {
+      title: 'Cassa Ventossa · Holiday home in Mochlos, Crete with sea view',
+      desc: 'Entire hillside home above Mochlos, Lasithi, Crete, for 4 guests: 2 bedrooms, veranda overlooking the bay, stone fireplace. Book on Booking.com or Airbnb.',
+    },
+  };
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  const isBot = /bot|crawl|spider|slurp|lighthouse|preview|facebookexternalhit/i.test(navigator.userAgent);
   let saved = null;
   try { saved = localStorage.getItem('cv-lang'); } catch {}
-  lang = saved || ((navigator.language || 'el').toLowerCase().startsWith('el') ? 'el' : 'en');
+  let lang = ['el', 'en'].includes(urlLang) ? urlLang
+    : isBot ? 'el'
+    : saved || ((navigator.language || 'el').toLowerCase().startsWith('el') ? 'el' : 'en');
   const t = (k) => (lang === 'en' ? EN : EL)[k];
+
+  const ALT = {
+    el: { living: 'Σαλόνι με πέτρινο τζάκι', master: 'Κύριο υπνοδωμάτιο με διπλό κρεβάτι', bedroom: 'Υπνοδωμάτιο με δύο μονά κρεβάτια', kitchen: 'Εξοπλισμένη κουζίνα', bath: 'Μπάνιο με ντουζιέρα', exterior: 'Το σπίτι και η βεράντα με θέα θάλασσα', view: 'Ο Μόχλος και ο κόλπος του Μιραμπέλλου' },
+    en: { living: 'Living room with stone fireplace', master: 'Master bedroom with double bed', bedroom: 'Bedroom with two single beds', kitchen: 'Fully equipped kitchen', bath: 'Bathroom with shower', exterior: 'The house and veranda with sea view', view: 'Mochlos village and the Gulf of Mirabello' },
+  };
+  const altFor = (name) => `${ALT[lang][name.split('-')[0]]} · Cassa Ventossa, ${lang === 'en' ? 'Mochlos Crete' : 'Μόχλος Κρήτη'}`;
 
   function applyLang() {
     document.documentElement.lang = lang;
+    document.title = META[lang].title;
+    $('meta[name=description]').content = META[lang].desc;
+    $('link[rel=canonical]').href = lang === 'en' ? `${SITE}?lang=en` : SITE;
+    $$('img[data-alt]').forEach((img) => (img.alt = altFor(img.dataset.alt)));
     const dict = lang === 'en' ? EN : EL;
     $$('[data-i18n]').forEach((el) => { const v = dict[el.dataset.i18n]; if (v != null) el.textContent = v; });
     $$('[data-i18n-html]').forEach((el) => { const v = dict[el.dataset.i18nHtml]; if (v != null) el.innerHTML = v; });
@@ -67,12 +93,15 @@
   $('#langBtn').addEventListener('click', () => {
     lang = lang === 'el' ? 'en' : 'el';
     try { localStorage.setItem('cv-lang', lang); } catch {}
+    const u = new URL(location.href);
+    lang === 'en' ? u.searchParams.set('lang', 'en') : u.searchParams.delete('lang');
+    history.replaceState(null, '', u);
     applyLang();
   });
 
   /* ---------------- Loader ---------------- */
   const heroImg = new Image();
-  heroImg.src = 'img/lg/exterior-5.jpg';
+  heroImg.src = 'img/lg/exterior-5.webp';
   const start = performance.now();
   const finish = () => {
     const wait = Math.max(0, 1500 - (performance.now() - start));
@@ -195,7 +224,7 @@
     fig.className = 'tile';
     fig.dataset.cat = CAT(n);
     fig.dataset.name = n;
-    fig.innerHTML = `<img src="img/sm/${n}.jpg" width="${w}" height="${h}" alt="Cassa Ventossa – ${n}" loading="lazy" decoding="async">`;
+    fig.innerHTML = `<img src="img/sm/${n}.webp" width="${w}" height="${h}" data-alt="${n}" alt="${altFor(n)}" loading="lazy" decoding="async">`;
     masonry.appendChild(fig);
   });
   const tiles = $$('.tile');
@@ -235,7 +264,7 @@
     galMore.hidden = !compact || rest <= 0;
     galMoreCount.textContent = lang === 'en' ? `+${rest} more · ${list.length} in total` : `+${rest} ακόμα · ${list.length} συνολικά`;
     galMoreThumbs.innerHTML = list.slice(COMPACT_LIMIT, COMPACT_LIMIT + 3)
-      .map((t) => `<img src="img/sm/${t.dataset.name}.jpg" alt="">`).join('');
+      .map((t) => `<img src="img/sm/${t.dataset.name}.webp" alt="">`).join('');
   }
   galMore.addEventListener('click', () => {
     const list = filtered().map((t) => t.dataset.name);
@@ -262,13 +291,14 @@
   }
   function showLb(anim = true) {
     const set = () => {
-      lbImg.src = `img/lg/${lbList[lbIdx]}.jpg`;
+      lbImg.src = `img/lg/${lbList[lbIdx]}.webp`;
+      lbImg.alt = altFor(lbList[lbIdx]);
       lbCount.textContent = `${String(lbIdx + 1).padStart(2, '0')} / ${String(lbList.length).padStart(2, '0')}`;
       lbImg.onload = () => lbImg.classList.remove('swap');
     };
     if (anim) { lbImg.classList.add('swap'); setTimeout(set, 220); } else set();
     // preload neighbours
-    [1, -1].forEach((d) => { const i = new Image(); i.src = `img/lg/${lbList[(lbIdx + d + lbList.length) % lbList.length]}.jpg`; });
+    [1, -1].forEach((d) => { const i = new Image(); i.src = `img/lg/${lbList[(lbIdx + d + lbList.length) % lbList.length]}.webp`; });
   }
   const stepLb = (d) => { lbIdx = (lbIdx + d + lbList.length) % lbList.length; showLb(); };
   function closeLb() { lb.classList.remove('is-open'); lb.setAttribute('aria-hidden', 'true'); document.body.classList.remove('no-scroll'); }
