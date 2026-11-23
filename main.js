@@ -39,7 +39,7 @@
     'rv.t1': 'Stunning view', 'rv.t2': 'Perfect location', 'rv.t3': 'Spotless', 'rv.t4': 'Great for families', 'rv.t5': 'Welcoming host',
     'bk.eyebrow': 'Booking', 'bk.title': 'Choose where to <em>book</em>', 'bk.sub': 'Same house, two trusted platforms. Book wherever suits you best.',
     'bk.bookingTxt': 'Instant confirmation & your Genius perks', 'bk.airbnbTxt': 'Chat with the host & 5★ reviews', 'bk.go': 'Book →', 'bk.dates': 'Pick your dates first',
-    'ft.tag': 'Mochlos, Lasithi, Crete', 'ft.host': 'Your host', 'ft.hostName': 'Georgia — usually replies within an hour', 'ft.book': 'Bookings', 'ft.reg': 'Registration no. (AMA)',
+    'ft.tag': 'Mochlos, Lasithi, Crete', 'ft.host': 'Your host', 'ft.hostName': 'Georgia — usually replies within an hour', 'ft.book': 'Bookings', 'ft.reg': 'Registration no. (AMA)', 'ft.credit': 'Design & development by',
     'md.eyebrow': 'Booking', 'md.title': 'When are <em>you coming?</em>', 'md.in': 'Check-in', 'md.out': 'Check-out', 'md.guests': 'Guests', 'md.choose': 'Choose a platform:',
     'md.note': 'You’ll land on the listing with your dates already filled in.', 'cursor.view': 'View',
     nights: (n) => `${n} ${n === 1 ? 'night' : 'nights'}`,
@@ -115,6 +115,8 @@
   /* ---------------- Nav ---------------- */
   const nav = $('#nav');
   const mbar = $('#mbar');
+  const toTop = $('#toTop'), toTopRing = $('#toTopProgress');
+  toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }));
   let lastY = 0;
   function onScrollNav() {
     const y = scrollY;
@@ -122,6 +124,9 @@
     const menuOpen = document.body.classList.contains('menu-open');
     nav.classList.toggle('is-hidden', !menuOpen && y > lastY && y > innerHeight);
     mbar.classList.toggle('show', y > innerHeight * 0.6 && !isNearBook());
+    toTop.classList.toggle('show', y > innerHeight * 0.8);
+    const max = document.documentElement.scrollHeight - innerHeight;
+    toTopRing.style.strokeDashoffset = 150.8 * (1 - Math.min(1, y / (max || 1)));
     lastY = y;
   }
   const bookSec = $('#book');
