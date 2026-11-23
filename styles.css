@@ -200,7 +200,17 @@ p{color:var(--ink-2)}
 .tile:hover img{transform:scale(1.06)}
 .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(8,22,32,.4));opacity:0;transition:opacity .5s}
 .tile:hover::after{opacity:1}
-.tile.is-out{display:none}
+.tile.is-out,.tile.is-more{display:none}
+.gal-more{display:flex;align-items:center;gap:16px;width:100%;margin-top:12px;padding:12px 20px 12px 12px;border-radius:18px;background:var(--sea);color:var(--sand);text-align:left;transition:transform .5s var(--ease)}
+.gal-more[hidden]{display:none}
+.gal-more:active{transform:scale(.98)}
+.gal-more__thumbs{display:flex;flex:none}
+.gal-more__thumbs img{width:44px;height:44px;object-fit:cover;border-radius:10px;border:2px solid var(--sea)}
+.gal-more__thumbs img+img{margin-left:-18px}
+.gal-more__txt{display:flex;flex-direction:column;flex:1;line-height:1.3}
+.gal-more__txt b{font-weight:600;font-size:15px}
+.gal-more__txt small{font-size:12.5px;color:rgba(244,239,230,.65)}
+.gal-more i{font-style:normal;font-size:20px;color:var(--gold)}
 
 /* ---------- Mochlos ---------- */
 .mochlos{display:grid;grid-template-columns:1.1fr 1fr;background:var(--sea);color:var(--sand)}
@@ -372,8 +382,10 @@ p{color:var(--ink-2)}
   .filters{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:0 16px 6px;scrollbar-width:none;width:calc(100% + 32px)}
   .filters::-webkit-scrollbar{display:none}
   .filters button{flex:none}
-  .masonry{columns:2;column-gap:10px}
-  .tile{margin-bottom:10px;border-radius:12px}
+  .masonry{columns:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .tile{margin:0;border-radius:12px;aspect-ratio:1}
+  .tile.is-wide{grid-column:span 2;aspect-ratio:16/10}
+  .tile img{width:100%;height:100%;object-fit:cover}
   .bar{grid-template-columns:110px 1fr 34px;gap:12px;font-size:14px}
   .platforms{grid-template-columns:1fr}
   .platform{padding:26px 22px}

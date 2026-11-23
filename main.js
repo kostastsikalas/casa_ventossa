@@ -31,7 +31,7 @@
     'sp.bath': 'Bathroom', 'sp.bathP': 'Clean and bright, with a shower and all the essentials.',
     'quote.text': '“Few homes greet you with a view like this every morning.”',
     'gal.eyebrow': 'Gallery', 'gal.title': 'Glimpses of <em>the house</em>',
-    'f.all': 'All', 'f.living': 'Living', 'f.bedrooms': 'Bedrooms', 'f.kitchen': 'Kitchen', 'f.bath': 'Bathroom', 'f.outdoor': 'Outdoors', 'f.mochlos': 'Mochlos',
+    'f.all': 'All', 'f.living': 'Living', 'f.bedrooms': 'Bedrooms', 'f.kitchen': 'Kitchen', 'f.bath': 'Bathroom', 'f.outdoor': 'Outdoors', 'f.mochlos': 'Mochlos', 'gal.all': 'All photos',
     'mo.eyebrow': 'The area', 'mo.title': 'Mochlos, <em>East Crete’s best-kept secret</em>',
     'mo.p': 'A small fishing village on the Gulf of Mirabello, with tavernas right on the water, crystal-clear sea and the Minoan islet just a few strokes from the shore.',
     'mo.d1': 'Village & tavernas', 'mo.d1v': 'a few minutes', 'mo.d2': 'The sea', 'mo.d2v': 'close by, with access', 'mo.d3': 'Mochlos islet', 'mo.d3v': 'just off the shore', 'mo.d4': 'Agios Nikolaos · Sitia', 'mo.d4v': 'an easy drive',
@@ -62,6 +62,7 @@
     $$('[data-i18n-html]').forEach((el) => { const v = dict[el.dataset.i18nHtml]; if (v != null) el.innerHTML = v; });
     $$('#langBtn span').forEach((s) => s.classList.toggle('on', s.dataset.l === lang));
     updateLinks();
+    if (typeof layoutCompact === 'function') layoutCompact();
   }
   $('#langBtn').addEventListener('click', () => {
     lang = lang === 'el' ? 'en' : 'el';
@@ -209,12 +210,38 @@
       tile.classList.remove('in');
       tile.classList.toggle('is-out', f !== 'all' && tile.dataset.cat !== f);
     });
+    layoutCompact();
     requestAnimationFrame(() => requestAnimationFrame(() => {
       visibleTiles().forEach((tile, i) => setTimeout(() => tile.classList.add('in'), Math.min(i, 10) * 50));
     }));
   }
   $$('#filters button').forEach((b) => b.addEventListener('click', () => setFilter(b.dataset.filter)));
-  const visibleTiles = () => tiles.filter((t) => !t.classList.contains('is-out'));
+  const filtered = () => tiles.filter((t) => !t.classList.contains('is-out'));
+  const visibleTiles = () => filtered().filter((t) => !t.classList.contains('is-more'));
+
+  // Mobile: show a short curated grid, the rest open in the full-screen viewer
+  const COMPACT_LIMIT = 6;
+  const compactMQ = matchMedia('(max-width:640px)');
+  const galMore = $('#galMore'), galMoreCount = $('#galMoreCount'), galMoreThumbs = $('#galMoreThumbs');
+  function layoutCompact() {
+    const list = filtered();
+    const compact = compactMQ.matches;
+    list.forEach((t, i) => {
+      t.classList.toggle('is-more', compact && i >= COMPACT_LIMIT);
+      t.classList.toggle('is-wide', compact && i % 5 === 0);
+    });
+    tiles.filter((t) => t.classList.contains('is-out')).forEach((t) => t.classList.remove('is-more', 'is-wide'));
+    const rest = list.length - COMPACT_LIMIT;
+    galMore.hidden = !compact || rest <= 0;
+    galMoreCount.textContent = lang === 'en' ? `+${rest} more · ${list.length} in total` : `+${rest} ακόμα · ${list.length} συνολικά`;
+    galMoreThumbs.innerHTML = list.slice(COMPACT_LIMIT, COMPACT_LIMIT + 3)
+      .map((t) => `<img src="img/sm/${t.dataset.name}.jpg" alt="">`).join('');
+  }
+  galMore.addEventListener('click', () => {
+    const list = filtered().map((t) => t.dataset.name);
+    openLb(list[COMPACT_LIMIT] || list[0], list);
+  });
+  compactMQ.addEventListener('change', layoutCompact);
 
   // spaces cards jump to filtered gallery
   $$('.space-card').forEach((c) => c.addEventListener('click', () => {
@@ -225,8 +252,8 @@
   /* ---------------- Lightbox ---------------- */
   const lb = $('#lightbox'), lbImg = $('#lbImg'), lbCount = $('#lbCount');
   let lbList = [], lbIdx = 0;
-  function openLb(name) {
-    lbList = visibleTiles().map((t) => t.dataset.name);
+  function openLb(name, list) {
+    lbList = list || filtered().map((t) => t.dataset.name);
     lbIdx = lbList.indexOf(name);
     showLb(false);
     lb.classList.add('is-open');
