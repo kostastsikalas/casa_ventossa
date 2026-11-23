@@ -184,7 +184,8 @@ p{color:var(--ink-2)}
 /* ---------- Quote ---------- */
 .quote{position:relative;height:clamp(460px,85vh,820px);display:grid;place-items:center;overflow:hidden;text-align:center;color:#fff}
 .quote__bg,.book__bg{position:absolute;inset:-15% 0;background:var(--img) center/cover no-repeat;will-change:transform}
-.quote__shade{position:absolute;inset:0;background:rgba(8,22,32,.35)}
+.quote__bg{background-position:center 42%}
+.quote__shade{position:absolute;inset:0;background:rgba(8,22,32,.2)}
 .quote__text{position:relative;font-family:var(--serif);font-style:italic;font-size:clamp(34px,5.4vw,80px);line-height:1.08;max-width:1000px;padding:0 var(--pad);text-shadow:0 2px 30px rgba(0,0,0,.25)}
 
 /* ---------- Gallery ---------- */
