@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cassa Ventossa · Μόχλος, Κρήτη</title>
+  <meta name="description" content="Cassa Ventossa — σπίτι στην πλαγιά πάνω από τον Μόχλο της Κρήτης, με θέα στον κόλπο και το νησάκι. Κάντε κράτηση μέσω Booking.com ή Airbnb.">
+  <meta name="theme-color" content="#0e2a3a">
+  <meta property="og:title" content="Cassa Ventossa · Mochlos, Crete">
+  <meta property="og:description" content="Hillside house above the bay of Mochlos, Crete.">
+  <meta property="og:image" content="img/lg/exterior-5.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="img/lg/exterior-5.jpg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="is-loading">
+
+  <!-- Intro loader -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__word">Cassa</span>
+      <span class="loader__word loader__word--it">Ventossa</span>
+    </div>
+    <div class="loader__bar"><span></span></div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__logo" aria-label="Cassa Ventossa">
+      <span>Cassa</span> <em>Ventossa</em>
+    </a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#about" data-i18n="nav.about">Το σπίτι</a>
+      <a href="#spaces" data-i18n="nav.spaces">Χώροι</a>
+      <a href="#gallery" data-i18n="nav.gallery">Φωτογραφίες</a>
+      <a href="#mochlos" data-i18n="nav.location">Μόχλος</a>
+      <a href="#reviews" data-i18n="nav.reviews">Κριτικές</a>
+    </nav>
+    <div class="nav__right">
+      <button class="lang" id="langBtn" aria-label="Change language"><span data-l="el">EL</span><i>/</i><span data-l="en">EN</span></button>
+      <button class="btn btn--pill nav__book" data-open-booking data-i18n="cta.book">Κράτηση</button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav>
+      <a href="#about" data-i18n="nav.about">Το σπίτι</a>
+      <a href="#spaces" data-i18n="nav.spaces">Χώροι</a>
+      <a href="#gallery" data-i18n="nav.gallery">Φωτογραφίες</a>
+      <a href="#mochlos" data-i18n="nav.location">Μόχλος</a>
+      <a href="#reviews" data-i18n="nav.reviews">Κριτικές</a>
+    </nav>
+    <button class="btn btn--light" data-open-booking data-i18n="cta.bookNow">Κάντε κράτηση</button>
+  </div>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__slides">
+        <div class="hero__slide is-active" style="--img:url(img/lg/exterior-5.jpg)"></div>
+        <div class="hero__slide" style="--img:url(img/lg/view-4.jpg)"></div>
+        <div class="hero__slide" style="--img:url(img/lg/exterior-2.jpg)"></div>
+        <div class="hero__slide" style="--img:url(img/lg/view-10.jpg)"></div>
+      </div>
+      <div class="hero__shade"></div>
+      <div class="hero__content">
+        <p class="eyebrow hero__eyebrow"><span class="line"></span><span data-i18n="hero.eyebrow">Μόχλος · Λασίθι · Κρήτη</span></p>
+        <h1 class="hero__title">
+          <span class="split"><span>Cassa</span></span>
+          <span class="split"><em>Ventossa</em></span>
+        </h1>
+        <p class="hero__sub" data-i18n="hero.sub">Ένα σπίτι στην πλαγιά, εκεί που ο άνεμος συναντά τη θάλασσα του Μόχλου.</p>
+        <div class="hero__actions">
+          <button class="btn btn--light" data-open-booking data-i18n="cta.checkAvail">Δείτε διαθεσιμότητα</button>
+          <a href="#gallery" class="btn btn--ghost" data-i18n="cta.photos">Φωτογραφίες</a>
+        </div>
+      </div>
+      <div class="hero__meta">
+        <div class="hero__dots" id="heroDots"></div>
+        <a href="#about" class="hero__scroll" aria-label="Scroll"><span data-i18n="hero.scroll">Κύλιση</span><i></i></a>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Θέα στον κόλπο</span><b>✦</b><span>Sea view</span><b>✦</b><span>Ησυχία</span><b>✦</b><span>Mochlos · Crete</span><b>✦</b><span>Τζάκι</span><b>✦</b><span>Veranda</span><b>✦</b>
+        <span>Θέα στον κόλπο</span><b>✦</b><span>Sea view</span><b>✦</b><span>Ησυχία</span><b>✦</b><span>Mochlos · Crete</span><b>✦</b><span>Τζάκι</span><b>✦</b><span>Veranda</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about section" id="about">
+      <div class="about__text">
+        <p class="eyebrow reveal"><span class="line"></span><span data-i18n="about.eyebrow">Το σπίτι</span></p>
+        <h2 class="h2 reveal" data-i18n-html="about.title">Ζήστε τον Μόχλο <em>από ψηλά</em></h2>
+        <p class="lead reveal" data-i18n="about.p1">Η Cassa Ventossa στέκει στην πλαγιά πάνω από το ψαροχώρι του Μόχλου, με τη θάλασσα να απλώνεται μπροστά σας και το νησάκι να καθρεφτίζεται στον κόλπο.</p>
+        <p class="reveal" data-i18n="about.p2">Ένα ζεστό, φωτεινό σπίτι με ξύλινες οροφές, πέτρινο τζάκι και σκεπαστή βεράντα με θέα στο πέλαγος. Πλήρως εξοπλισμένη κουζίνα, δύο υπνοδωμάτια και όλα όσα χρειάζεστε για να χαλαρώσετε στον δικό σας ρυθμό — λίγα λεπτά από τις ταβέρνες και τη θάλασσα του χωριού.</p>
+        <div class="facts reveal-stagger">
+          <div class="fact"><strong class="count" data-to="4">4</strong><span data-i18n="facts.guests">Επισκέπτες</span></div>
+          <div class="fact"><strong class="count" data-to="2">2</strong><span data-i18n="facts.bedrooms">Υπνοδωμάτια</span></div>
+          <div class="fact"><strong class="count" data-to="4">4</strong><span data-i18n="facts.beds">Κρεβάτια</span></div>
+          <div class="fact"><strong class="count" data-to="1">1</strong><span data-i18n="facts.bath">Μπάνιο</span></div>
+        </div>
+      </div>
+      <div class="about__media">
+        <figure class="about__img about__img--a img-reveal"><img src="img/lg/exterior-3.jpg" alt="Cassa Ventossa εξωτερικά" loading="lazy" data-parallax="0.08"></figure>
+        <figure class="about__img about__img--b img-reveal"><img src="img/sm/exterior-1.jpg" alt="Βεράντα με θέα" loading="lazy" data-parallax="-0.06"></figure>
+        <div class="about__badge">
+          <svg viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"/></defs><text><textPath href="#circ">MOCHLOS · CRETE · CASSA VENTOSSA · </textPath></text></svg>
+          <span>✦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- AMENITIES -->
+    <section class="amenities section">
+      <div class="amenities__grid reveal-stagger">
+        <div class="amenity"><svg viewBox="0 0 24 24"><path d="M2 16c2 0 2-1.5 4-1.5S8 16 10 16s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5M2 20c2 0 2-1.5 4-1.5S8 20 10 20s2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 4-1.5M4 11l5-6 4 4 3-3 4 5"/></svg><span data-i18n="am.view">Θέα θάλασσα & βουνό</span></div>
+        <div class="amenity"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6"/></svg><span data-i18n="am.whole">Ολόκληρο σπίτι</span></div>
+        <div class="amenity"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a14.5 14.5 0 0 1 20 0M12 19.5h.01"/></svg><span>Wi‑Fi</span></div>
+        <div class="amenity"><svg viewBox="0 0 24 24"><path d="M4 3h16v18H4zM4 9h16M8 6h.01M11 6h.01M8 13v4"/></svg><span data-i18n="am.kitchen">Εξοπλισμένη κουζίνα</span></div>
+        <div class="amenity"><svg viewBox="0 0 24 24"><path d="M12 22c4 0 6-2.5 6-6 0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-2 2-3 5-3 8 0 3.5 2 6 6 6z"/></svg><span data-i18n="am.fire">Πέτρινο τζάκι</span></div>
+        <div class="amenity"><svg viewBox="0 0 24 24"><path d="M3 4h18v6H3zM6 10v3M18 10v3M7 17c0 1.5 1 3 1 3M12 16v4M17 17c0 1.5-1 3-1 3"/></svg><span data-i18n="am.ac">Κλιματισμός</span></div>
+        <div class="amenity"><svg viewBox="0 0 24 24"><path d="M2 10 12 4l10 6M4 10v10h16V10M2 20h20"/></svg><span data-i18n="am.veranda">Σκεπαστή βεράντα</span></div>
+        <div class="amenity"><svg viewBox="0 0 24 24"><path d="M12 3v3M5 21h14M7 21l1-9h8l1 9M4 12h16"/><circle cx="12" cy="9" r="0"/></svg><span data-i18n="am.beach">Πρόσβαση σε παραλία</span></div>
+      </div>
+    </section>
+
+    <!-- SPACES (horizontal scroll) -->
+    <section class="spaces" id="spaces">
+      <div class="spaces__head section">
+        <p class="eyebrow reveal"><span class="line"></span><span data-i18n="spaces.eyebrow">Οι χώροι</span></p>
+        <h2 class="h2 reveal" data-i18n-html="spaces.title">Κάθε γωνιά, <em>φτιαγμένη για ξεκούραση</em></h2>
+      </div>
+      <div class="spaces__pin" id="spacesPin">
+        <div class="spaces__sticky">
+          <div class="spaces__track" id="spacesTrack">
+            <article class="space-card" data-gallery="living">
+              <div class="space-card__img"><img src="img/lg/living-2.jpg" alt="" loading="lazy"></div>
+              <div class="space-card__body"><span class="space-card__no">01</span><h3 data-i18n="sp.living">Σαλόνι & τζάκι</h3><p data-i18n="sp.livingP">Βελούδινοι καναπέδες, πέτρινο τζάκι και φως που μπαίνει από παντού.</p></div>
+            </article>
+            <article class="space-card" data-gallery="bedrooms">
+              <div class="space-card__img"><img src="img/lg/master-1.jpg" alt="" loading="lazy"></div>
+              <div class="space-card__body"><span class="space-card__no">02</span><h3 data-i18n="sp.master">Κύριο υπνοδωμάτιο</h3><p data-i18n="sp.masterP">Διπλό κρεβάτι, κλιματισμός και πόρτα που ανοίγει στη βεράντα.</p></div>
+            </article>
+            <article class="space-card" data-gallery="bedrooms">
+              <div class="space-card__img"><img src="img/lg/bedroom-1.jpg" alt="" loading="lazy"></div>
+              <div class="space-card__body"><span class="space-card__no">03</span><h3 data-i18n="sp.bed2">Δεύτερο υπνοδωμάτιο</h3><p data-i18n="sp.bed2P">Δύο μονά κρεβάτια — ιδανικό για παιδιά ή φίλους.</p></div>
+            </article>
+            <article class="space-card" data-gallery="kitchen">
+              <div class="space-card__img"><img src="img/lg/kitchen-1.jpg" alt="" loading="lazy"></div>
+              <div class="space-card__body"><span class="space-card__no">04</span><h3 data-i18n="sp.kitchen">Κουζίνα</h3><p data-i18n="sp.kitchenP">Πλήρως εξοπλισμένη, για να μαγειρέψετε με τοπικά προϊόντα.</p></div>
+            </article>
+            <article class="space-card" data-gallery="outdoor">
+              <div class="space-card__img"><img src="img/lg/exterior-2.jpg" alt="" loading="lazy"></div>
+              <div class="space-card__body"><span class="space-card__no">05</span><h3 data-i18n="sp.veranda">Βεράντα με θέα</h3><p data-i18n="sp.verandaP">Πρωινός καφές και ηλιοβασίλεμα πάνω από το Κρητικό πέλαγος.</p></div>
+            </article>
+            <article class="space-card" data-gallery="bath">
+              <div class="space-card__img"><img src="img/lg/bath-3.jpg" alt="" loading="lazy"></div>
+              <div class="space-card__body"><span class="space-card__no">06</span><h3 data-i18n="sp.bath">Μπάνιο</h3><p data-i18n="sp.bathP">Καθαρό, φωτεινό, με ντουζιέρα και όλα τα απαραίτητα.</p></div>
+            </article>
+          </div>
+          <div class="spaces__progress"><span id="spacesBar"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARALLAX QUOTE -->
+    <section class="quote">
+      <div class="quote__bg" style="--img:url(img/lg/view-9.jpg)" data-parallax-bg></div>
+      <div class="quote__shade"></div>
+      <blockquote class="quote__text reveal">
+        <span data-i18n="quote.text">«Λίγα σπίτια σού χαρίζουν τέτοια θέα κάθε πρωί.»</span>
+      </blockquote>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery section" id="gallery">
+      <div class="gallery__head">
+        <div>
+          <p class="eyebrow reveal"><span class="line"></span><span data-i18n="gal.eyebrow">Φωτογραφίες</span></p>
+          <h2 class="h2 reveal" data-i18n-html="gal.title">Ματιές στο <em>σπίτι</em></h2>
+        </div>
+        <div class="filters reveal" id="filters" role="tablist">
+          <button class="is-active" data-filter="all" data-i18n="f.all">Όλες</button>
+          <button data-filter="living" data-i18n="f.living">Σαλόνι</button>
+          <button data-filter="bedrooms" data-i18n="f.bedrooms">Υπνοδωμάτια</button>
+          <button data-filter="kitchen" data-i18n="f.kitchen">Κουζίνα</button>
+          <button data-filter="bath" data-i18n="f.bath">Μπάνιο</button>
+          <button data-filter="outdoor" data-i18n="f.outdoor">Εξωτερικά</button>
+          <button data-filter="mochlos" data-i18n="f.mochlos">Μόχλος</button>
+        </div>
+      </div>
+      <div class="masonry" id="masonry"></div>
+    </section>
+
+    <!-- MOCHLOS -->
+    <section class="mochlos" id="mochlos">
+      <div class="mochlos__media img-reveal">
+        <img src="img/lg/view-2.jpg" alt="Μόχλος από ψηλά" loading="lazy" data-parallax="0.1">
+      </div>
+      <div class="mochlos__panel">
+        <p class="eyebrow reveal"><span class="line"></span><span data-i18n="mo.eyebrow">Η περιοχή</span></p>
+        <h2 class="h2 reveal" data-i18n-html="mo.title">Μόχλος, <em>το μυστικό της ανατολικής Κρήτης</em></h2>
+        <p class="reveal" data-i18n="mo.p">Ένα μικρό ψαροχώρι στον κόλπο του Μιραμπέλλου, με ταβέρνες πάνω στο κύμα, κρυστάλλινα νερά και το μινωικό νησάκι απέναντι, μόλις λίγες απλωτές από την ακτή.</p>
+        <ul class="distances reveal-stagger">
+          <li><span data-i18n="mo.d1">Χωριό & ταβέρνες</span><b data-i18n="mo.d1v">λίγα λεπτά</b></li>
+          <li><span data-i18n="mo.d2">Θάλασσα</span><b data-i18n="mo.d2v">κοντά, με πρόσβαση</b></li>
+          <li><span data-i18n="mo.d3">Νησάκι Μόχλου</span><b data-i18n="mo.d3v">απέναντι από την ακτή</b></li>
+          <li><span data-i18n="mo.d4">Άγιος Νικόλαος · Σητεία</span><b data-i18n="mo.d4v">εύκολη πρόσβαση με αυτοκίνητο</b></li>
+        </ul>
+        <div class="mochlos__map reveal">
+          <iframe title="Χάρτης Μόχλου" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Mochlos,Crete,Greece&z=13&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews section" id="reviews">
+      <div class="reviews__score reveal">
+        <p class="eyebrow"><span class="line"></span><span data-i18n="rv.eyebrow">Οι επισκέπτες μας</span></p>
+        <div class="big-score"><span class="count" data-to="5" data-dec="1">5.0</span><small>/5</small></div>
+        <div class="stars">★★★★★</div>
+        <p class="muted" data-i18n="rv.src">Βαθμολογία στο Airbnb</p>
+      </div>
+      <div class="reviews__bars reveal-stagger">
+        <div class="bar"><span data-i18n="rv.clean">Καθαριότητα</span><i style="--v:1"></i><b>5.0</b></div>
+        <div class="bar"><span data-i18n="rv.acc">Ακρίβεια</span><i style="--v:1"></i><b>5.0</b></div>
+        <div class="bar"><span data-i18n="rv.loc">Τοποθεσία</span><i style="--v:1"></i><b>5.0</b></div>
+        <div class="bar"><span data-i18n="rv.checkin">Check‑in</span><i style="--v:.96"></i><b>4.8</b></div>
+        <div class="bar"><span data-i18n="rv.comm">Επικοινωνία</span><i style="--v:.96"></i><b>4.8</b></div>
+        <div class="tags">
+          <span data-i18n="rv.t1">Υπέροχη θέα</span><span data-i18n="rv.t2">Τέλεια τοποθεσία</span><span data-i18n="rv.t3">Πεντακάθαρο</span><span data-i18n="rv.t4">Ιδανικό για οικογένειες</span><span data-i18n="rv.t5">Φιλόξενη οικοδέσποινα</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOK -->
+    <section class="book" id="book">
+      <div class="book__bg" style="--img:url(img/lg/view-4.jpg)" data-parallax-bg></div>
+      <div class="book__shade"></div>
+      <div class="book__inner">
+        <p class="eyebrow eyebrow--light reveal"><span class="line"></span><span data-i18n="bk.eyebrow">Κράτηση</span></p>
+        <h2 class="h2 h2--light reveal" data-i18n-html="bk.title">Διαλέξτε πού θα <em>κλείσετε</em></h2>
+        <p class="book__sub reveal" data-i18n="bk.sub">Το ίδιο σπίτι, δύο αξιόπιστες πλατφόρμες. Κλείστε εκεί που σας βολεύει.</p>
+        <div class="platforms reveal-stagger">
+          <a class="platform platform--booking" data-platform="booking" href="#" target="_blank" rel="noopener">
+            <span class="platform__logo">Booking<b>.com</b></span>
+            <span class="platform__txt" data-i18n="bk.bookingTxt">Άμεση επιβεβαίωση & τα Genius προνόμιά σας</span>
+            <span class="platform__go" data-i18n="bk.go">Κράτηση →</span>
+          </a>
+          <a class="platform platform--airbnb" data-platform="airbnb" href="#" target="_blank" rel="noopener">
+            <span class="platform__logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 23.5c-1.6-2-2.7-3.9-3-5.5-.4-1.7.2-3.1 1.6-3.6 1-.3 2 .1 2.6.9.6-.8 1.6-1.2 2.6-.9 1.4.5 2 1.9 1.6 3.6-.4 1.6-1.4 3.5-3 5.5m0 0c-2.6 3-5.3 4.2-7.3 3.3-2.3-1-2.8-3.8-1.3-7.2L13 7.7c.7-1.5 1.7-2.5 3-2.5s2.3 1 3 2.5l5.6 11.9c1.5 3.4 1 6.2-1.3 7.2-2 .9-4.7-.3-7.3-3.3"/></svg>airbnb</span>
+            <span class="platform__txt" data-i18n="bk.airbnbTxt">Επικοινωνία με την οικοδέσποινα & κριτικές 5★</span>
+            <span class="platform__go" data-i18n="bk.go">Κράτηση →</span>
+          </a>
+        </div>
+        <button class="btn btn--light reveal" data-open-booking data-i18n="bk.dates">Επιλέξτε ημερομηνίες πρώτα</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <a href="#top" class="footer__logo"><span>Cassa</span> <em>Ventossa</em></a>
+      <p data-i18n="ft.tag">Μόχλος, Λασίθι, Κρήτη</p>
+    </div>
+    <div class="footer__cols">
+      <div><h4 data-i18n="ft.host">Οικοδέσποινα</h4><p data-i18n="ft.hostName">Γεωργία — απαντά συνήθως μέσα σε μία ώρα</p></div>
+      <div><h4 data-i18n="ft.book">Κρατήσεις</h4><p><a data-platform="booking" href="#" target="_blank" rel="noopener">Booking.com</a> · <a data-platform="airbnb" href="#" target="_blank" rel="noopener">Airbnb</a></p></div>
+      <div><h4 data-i18n="ft.reg">Αρ. μητρώου (ΑΜΑ)</h4><p>00003220887</p></div>
+    </div>
+    <p class="footer__copy">© <span id="year"></span> Cassa Ventossa</p>
+  </footer>
+
+  <!-- Mobile sticky book bar -->
+  <div class="mbar" id="mbar">
+    <div><strong>Cassa Ventossa</strong><span>★ 5.0 · Airbnb</span></div>
+    <button class="btn btn--dark" data-open-booking data-i18n="cta.book">Κράτηση</button>
+  </div>
+
+  <!-- Booking modal -->
+  <div class="modal" id="bookModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__sheet">
+      <button class="modal__close" data-close aria-label="Close">✕</button>
+      <div class="modal__media"><img src="img/sm/exterior-2.jpg" alt=""></div>
+      <div class="modal__body">
+        <p class="eyebrow"><span class="line"></span><span data-i18n="md.eyebrow">Κράτηση</span></p>
+        <h3 id="modalTitle" data-i18n-html="md.title">Πότε <em>έρχεστε;</em></h3>
+        <form class="dates" id="datesForm" onsubmit="return false">
+          <label><span data-i18n="md.in">Άφιξη</span><input type="date" id="checkin"></label>
+          <label><span data-i18n="md.out">Αναχώρηση</span><input type="date" id="checkout"></label>
+          <label class="guests"><span data-i18n="md.guests">Επισκέπτες</span>
+            <div class="stepper"><button type="button" data-step="-1" aria-label="-">−</button><output id="guests">2</output><button type="button" data-step="1" aria-label="+">+</button></div>
+          </label>
+        </form>
+        <p class="nights" id="nights"></p>
+        <p class="modal__choose" data-i18n="md.choose">Διαλέξτε πλατφόρμα:</p>
+        <div class="choice">
+          <a class="choice__btn choice__btn--booking" data-platform="booking" href="#" target="_blank" rel="noopener">
+            <span class="platform__logo">Booking<b>.com</b></span><i>→</i>
+          </a>
+          <a class="choice__btn choice__btn--airbnb" data-platform="airbnb" href="#" target="_blank" rel="noopener">
+            <span class="platform__logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 23.5c-1.6-2-2.7-3.9-3-5.5-.4-1.7.2-3.1 1.6-3.6 1-.3 2 .1 2.6.9.6-.8 1.6-1.2 2.6-.9 1.4.5 2 1.9 1.6 3.6-.4 1.6-1.4 3.5-3 5.5m0 0c-2.6 3-5.3 4.2-7.3 3.3-2.3-1-2.8-3.8-1.3-7.2L13 7.7c.7-1.5 1.7-2.5 3-2.5s2.3 1 3 2.5l5.6 11.9c1.5 3.4 1 6.2-1.3 7.2-2 .9-4.7-.3-7.3-3.3"/></svg>airbnb</span><i>→</i>
+          </a>
+        </div>
+        <p class="modal__note" data-i18n="md.note">Θα μεταφερθείτε στη σελίδα του σπιτιού με τις ημερομηνίες σας ήδη συμπληρωμένες.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" data-lb-close aria-label="Close">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" data-lb="-1" aria-label="Previous">‹</button>
+    <figure class="lightbox__fig"><img id="lbImg" alt=""></figure>
+    <button class="lightbox__nav lightbox__nav--next" data-lb="1" aria-label="Next">›</button>
+    <div class="lightbox__count" id="lbCount"></div>
+  </div>
+
+  <div class="cursor" id="cursor" aria-hidden="true"><span data-i18n="cursor.view">Δείτε</span></div>
+
+  <script src="main.js"></script>
+</body>
+</html>
